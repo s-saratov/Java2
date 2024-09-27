@@ -16,32 +16,13 @@ public class Task4 {
 
         Scanner scanner = new Scanner(System.in);
 
-
         System.out.print("Enter the word (in English): ");
         String word = scanner.nextLine();
 
-        char[] letters = stringToCharsArray(word);
+        System.out.println("Number of vowel letters:\t\t" + countVowels(word));
+        System.out.println("Number of consonant letters:\t" + countConsonants(word));
+        System.out.println("Number of other characters:\t\t" + (word.length() - (countVowels(word) + countConsonants(word))));
 
-        printArray(letters);
-
-        System.out.println(isInArray(letters, 'А'));
-
-    }
-
-    public static void printArray (char[] array) {
-        System.out.print("[");
-        for (int i = 0; i < array.length; i++) System.out.print(array[i] + ((i < array.length - 1) ? ", " : ""));
-        System.out.print("]\n");
-    }
-
-    // Метод преобразует строку в массив символов
-
-    public static char[] stringToCharsArray(String string) {
-        char[] letters = new char[string.length()];
-        for (int i = 0; i < letters.length; i++) {
-            letters[i] = string.charAt(i);
-        }
-        return letters;
     }
 
     // Метод проверяет, имеется ли символ в массиве, и возвращает true / false
@@ -54,6 +35,33 @@ public class Task4 {
         return false;
     }
 
-//    public static int countVowels
+    // Теория о том, какие буквы в английском языке относятся к гласным и согласным,
+    // взята отсюда: https://www.bbc.co.uk/bitesize/articles/z6dcvwx#zkt6ywx
+
+    // Метод возвращает количество английских гласных букв в строке
+    public static int countVowels (String string) {
+        if (string == null) return 0;
+        if (string.length() == 0) return 0;
+        char[] vowels = new char[] {'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'};
+        int number = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (isInArray(vowels, string.charAt(i))) number++;
+        }
+        return number;
+    }
+
+    // Метод возвращает количество английских согласных букв в строке
+    public static int countConsonants (String string) {
+        if (string == null) return 0;
+        if (string.length() == 0) return 0;
+        char[] consonants = new char[] {'b', 'B', 'c', 'C', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J',
+                'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T',
+                'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z'};
+        int number = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (isInArray(consonants, string.charAt(i))) number++;
+        }
+        return number;
+    }
 
 }

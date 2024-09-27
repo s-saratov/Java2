@@ -254,6 +254,34 @@ public class Utils {
         return letters;
     }
 
+    // Метод возвращает количество английских гласных букв в строке (написан в homework13\Task4)
+
+    public static int countVowels (String string) {
+        if (string == null) return 0;
+        if (string.length() == 0) return 0;
+        char[] vowels = new char[] {'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'};
+        int number = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (isInArray(vowels, string.charAt(i))) number++;
+        }
+        return number;
+    }
+
+    // Метод возвращает количество английских согласных букв в строке (написан в homework13\Task4)
+
+    public static int countConsonants (String string) {
+        if (string == null) return 0;
+        if (string.length() == 0) return 0;
+        char[] consonants = new char[]{'b', 'B', 'c', 'C', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J',
+                'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T',
+                'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z'};
+        int number = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (isInArray(consonants, string.charAt(i))) number++;
+        }
+        return number;
+    }
+
     // Метод возводит целое число base в степень exponent и возвращает результат (написан в homework09\Task2)
 
     public static double take2Power (int base, int exponent) {
