@@ -21,6 +21,14 @@ public class Task0 {
 
     public static void main(String[] args) {
 
+        System.out.println("1. Создаём массив класса MagicArray при помощи конструктора:");
+        MagicArray array = new MagicArray();
+        array.printArray();
+
+        System.out.println("\n2. Добавляем в массив элемент со значением 10:");
+        array.add(10);
+        array.printArray();
+
     }
 
 }

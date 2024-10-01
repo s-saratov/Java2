@@ -4,25 +4,19 @@ public class MagicArray {
     int[] array;
     int cursor; // присвоено значение по умолчанию = 0;
 
+    // Конструктор объекта класса
     public MagicArray() {
-        array = new int[10];
+        array = new int[0];
     }
 
-    // Добавление в массив одного элемента
+    // 1. Добавление в массив элементов
+
+    // 1.1. Добавление одного элемента
 
     void add (int value) {
 
-        // Проверка, есть ли вообще свободное место во внутреннем массиве
-        // Если места нет, его нужно добавить
-        if (cursor == array.length - 1) {
-            // Расширить массив перед добавлением нового элемента
-            expandArray();
-
-        }
-
+        if (cursor == 0 || cursor == array.length - 1) expandArray();
         array[cursor] = value;
-        cursor++;
-
     }
 
     void add(int... numbers) {
@@ -33,41 +27,31 @@ public class MagicArray {
 
     }
 
-    // Динамическое расширение массива
+    // 2. Вывод в консоль значений массива
+
+    void printArray () {
+        System.out.print("[");
+        for (int i = 0; i < array.length; i++) System.out.print(array[i] + ((i < array.length - 1) ? ", " : ""));
+        System.out.print("]\n");
+    }
+
+    // Динамическое расширение массива на 1 элемент (если не передан аргумент)
     void expandArray() {
-        System.out.println("Расширяем массив! Курсор = " + cursor);
-
-        /*
-        1. Создать новый массив бОльшего размера (в 2 раза больше).
-        2. Переписать в новый массив все значения из старого (до курсора).
-        3. Перебросить ссылку.
-         */
-
-        // 1
-        int[] newArray = new int[array.length * 2];
-
-        //2
+        int[] newArray = new int[cursor];
         for (int i = 0; i < cursor; i++) newArray[i] = array[i];
-
-        // Перебрасываем ссылку. Переменная array хранить ссылку на "новый" массив
         array = newArray;
-        System.out.println("Расширение массива завершено");
-
+        cursor++;
     }
 
-    // Возвращаем строковое представление массива
-    // [1, 14, 16]
-    public String toString() {
-
-        if (cursor == 0) return "[]";
-
-        String result = "[";
-        for (int i = 0; i < cursor; i++) {
-            result = result + array[i] + (i < cursor - 1 ? ", " : "]"); // ", " / "]"
-        }
-
-        return result;
+    // Динамическое расширение массива на n элементов
+    void expandArray(int n) {
+        int[] newArray = new int[array.length + n];
+        for (int i = 0; i < cursor; i++) newArray[i] = array[i];
+        array = newArray;
     }
+
+    // Д
+
 
     // Текущее количество элементов в массиве
     int size() {
