@@ -33,10 +33,10 @@ public class Task0 {
         array.printArray();
 
         System.out.println("\n4. Ищем индекс элемента со значением 40:");
-        System.out.println(array.binarySearch(40));
+        System.out.println(array.linearSearch(40));
 
         System.out.println("\n5. Пытаемся найти индекс элемента со значением 45:");
-        System.out.println(array.binarySearch(45));
+        System.out.println(array.linearSearch(45));
 
         System.out.println("\n6. Выводим значение элемента с индексом 1:");
         System.out.println(array.get(1));

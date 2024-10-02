@@ -87,6 +87,7 @@ public class Utils {
 
     // Метод осуществляет линейный поиск элемента в массиве целых чисел типа int и возвращает его индекс
     // (если элемент найден), либо - 1 (если элемент не найден) (написан в lesson_12\ArrayUtils)
+    // ВНИМАНИЕ! Метод используется только в отсортированных массивах!
 
     public static int linearSearch(int[] array, int searchValue) {
         for (int i = 0; i < array.length; i++) {

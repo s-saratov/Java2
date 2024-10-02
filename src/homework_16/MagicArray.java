@@ -26,18 +26,12 @@ public class MagicArray {
         System.out.print("]\n");
     }
 
-    // 3. Бинарный поиск элемента в массиве с возвращением его индекса (если элемент найден),
+    // 3. Линейный поиск элемента в массиве с возвращением его индекса (если элемент найден),
     // либо - 1 (если элемент не найден)
 
-    int binarySearch (int searchValue) {
-        int startIndex = 0;
-        int endIndex = cursor - 1;
-        int middleIndex;
-        while (startIndex <= endIndex) {
-            middleIndex = startIndex + (endIndex - startIndex) / 2;
-            if (array[middleIndex] == searchValue) return middleIndex;
-            if (array[middleIndex] > searchValue) endIndex = middleIndex - 1;
-            else startIndex = middleIndex + 1;
+    int linearSearch(int searchValue) {
+        for (int i = 0; i < cursor; i++) {
+            if (array[i] == searchValue) return i;
         }
         return -1;
     }
@@ -64,13 +58,14 @@ public class MagicArray {
     int removeIndex(int index) {
         if (index > 0 && index < cursor) {
             int tmp = array[index];
-            for (int i = index; i < cursor; i++) {
+            for (int i = index; i < cursor - 1; i++) {
                 array[i] = array[i + 1];
             }
             cursor--;
             return tmp;
         }
-        return Integer.MIN_VALUE;
+        else return Integer.MIN_VALUE; // Хорошего решения нет
+        //TODO: поправить обработку некорректного индекса
     }
 
     // 7. Добавление в массив нескольких элементов
@@ -92,7 +87,7 @@ public class MagicArray {
     // 9. Удаление элемента по значению, возвращается индекс удалённого элемента
 
     int removeValue(int value) {
-        int index = binarySearch(value);
+        int index = linearSearch(value);
         if (index == -1) return -1;
         else {
             removeIndex(index);
@@ -110,3 +105,5 @@ public class MagicArray {
     }
 
 }
+
+// TODO: доделать метод lastIndexOf
