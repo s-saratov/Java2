@@ -15,7 +15,7 @@ public class Person {
         return String.format("Person %s, Age: %d, Hobby: %s", name, age, hobby);
     }
 
-    private int getAge() {
+    public int getAge() {
         return age;
     }
 

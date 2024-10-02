@@ -1,17 +1,31 @@
-package homework_16;
+package homework_17;
+
+/*
+Task 1
+Инкапсулировать класс нашего магического массива
+
+Task 2
+Написать метод lastIndexOf(int value) возвращающий индекс последнего вхождения значения в массиве.
+ */
 
 public class MagicArray {
-    int[] array;
-    int cursor; // присвоено значение по умолчанию = 0;
+
+    // Поля класса
+
+    private int[] array;
+    private int cursor; // присвоено значение по умолчанию = 0;
 
     // Конструктор объекта класса (создаёт массив из 10 стандартных значений)
+
     public MagicArray() {
         array = new int[10];
     }
 
-    // 1.1. Добавление в массив одного элемента
+    // Методы
 
-    void add (int value) {
+    // 1. Добавление в массив одного элемента
+
+    public void add (int value) {
 
         if (cursor == array.length - 1) expandArray();
         array[cursor] = value;
@@ -20,7 +34,7 @@ public class MagicArray {
 
     // 2. Вывод в консоль значений массива
 
-    void printArray () {
+    public void printArray () {
         System.out.print("[");
         for (int i = 0; i < cursor; i++) System.out.print(array[i] + ((i < cursor - 1) ? ", " : ""));
         System.out.print("]\n");
@@ -29,7 +43,7 @@ public class MagicArray {
     // 3. Линейный поиск первого элемента в массиве с возвращением его индекса (если элемент найден),
     // либо - 1 (если элемент не найден)
 
-    int firstIndexOf(int searchValue) {
+    public int firstIndexOf(int searchValue) {
         for (int i = 0; i < cursor; i++) {
             if (array[i] == searchValue) return i;
         }
@@ -39,7 +53,7 @@ public class MagicArray {
     // 3.1. Линейный поиск последнего элемента в массиве с возвращением его индекса (если элемент найден),
     // либо - 1 (если элемент не найден)
 
-    int lastIndexOf(int searchValue) {
+    public int lastIndexOf(int searchValue) {
         for (int i = cursor - 1; i >= 0; i--) {
             if (array[i] == searchValue) return i;
         }
@@ -48,7 +62,7 @@ public class MagicArray {
 
     // 4. Возвращение значения по индексу
 
-    int get(int index) {
+    public int get(int index) {
         if (index >= 0 && index < cursor) {
             return array[index];
         }
@@ -59,13 +73,13 @@ public class MagicArray {
 
     // 5. Возвращение текущего количества элементов в массиве
 
-    int size() {
+    public int size() {
         return cursor;
     }
 
     //6. Удаление элемента по индексу index, возвращается значение удалённого элемента
 
-    int removeIndex(int index) {
+    public int removeIndex(int index) {
         if (index > 0 && index < cursor) {
             int tmp = array[index];
             for (int i = index; i < cursor - 1; i++) {
@@ -80,7 +94,7 @@ public class MagicArray {
 
     // 7. Добавление в массив нескольких элементов
 
-        void add(int... numbers) {
+    public void add(int... numbers) {
             for (int i = 0; i < numbers.length; i++) add(numbers[i]);
         }
 
@@ -96,7 +110,7 @@ public class MagicArray {
 
     // 9. Удаление элемента по значению, возвращается индекс удалённого элемента
 
-    int removeValue(int value) {
+    public int removeValue(int value) {
         int index = firstIndexOf(value);
         if (index == -1) return -1;
         else {
@@ -108,7 +122,7 @@ public class MagicArray {
 
     // Динамическое расширение массива в два раза
 
-    void expandArray() {
+    private void expandArray() {
         int[] newArray = new int[array.length * 2];
         for (int i = 0; i < cursor; i++) newArray[i] = array[i];
         array = newArray;
