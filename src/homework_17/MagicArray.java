@@ -15,10 +15,23 @@ public class MagicArray {
     private int[] array;
     private int cursor; // присвоено значение по умолчанию = 0;
 
-    // Конструктор объекта класса (создаёт массив из 10 стандартных значений)
+    // Конструкторы объекта класса
+
+    // 1. Создающий массив из 10 стандартных значений
 
     public MagicArray() {
         array = new int[10];
+    }
+
+    // 2. Принимающий в себя обычный массив и создающий MagicArray с такими же значениями
+
+    public MagicArray(int[] ordinaryArray) {
+        if (ordinaryArray == null || ordinaryArray.length == 0) array = new int[10];
+        else {
+            array = ordinaryArray;
+            cursor = ordinaryArray.length;
+            expandArray();
+        }
     }
 
     // Методы
@@ -50,7 +63,7 @@ public class MagicArray {
         return -1;
     }
 
-    // 3.1. Линейный поиск последнего элемента в массиве с возвращением его индекса (если элемент найден),
+    // 4. Линейный поиск последнего элемента в массиве с возвращением его индекса (если элемент найден),
     // либо - 1 (если элемент не найден)
 
     public int lastIndexOf(int searchValue) {
@@ -60,7 +73,7 @@ public class MagicArray {
         return -1;
     }
 
-    // 4. Возвращение значения по индексу
+    // 5. Возвращение значения по индексу
 
     public int get(int index) {
         if (index >= 0 && index < cursor) {
@@ -71,13 +84,13 @@ public class MagicArray {
         //TODO: поправить обработку некорректного индекса
     }
 
-    // 5. Возвращение текущего количества элементов в массиве
+    // 6. Возвращение текущего количества элементов в массиве
 
     public int size() {
         return cursor;
     }
 
-    //6. Удаление элемента по индексу index, возвращается значение удалённого элемента
+    // 7. Удаление элемента по индексу index, возвращается значение удалённого элемента
 
     public int removeIndex(int index) {
         if (index > 0 && index < cursor) {
@@ -92,21 +105,11 @@ public class MagicArray {
         //TODO: поправить обработку некорректного индекса
     }
 
-    // 7. Добавление в массив нескольких элементов
+    // 8. Добавление в массив нескольких элементов
 
     public void add(int... numbers) {
             for (int i = 0; i < numbers.length; i++) add(numbers[i]);
         }
-
-    // 8. Конструктор, принимающий в себя обычный массив и создающий MagicArray с такими же значениями
-    public MagicArray(int[] ordinaryArray) {
-        if (ordinaryArray == null || ordinaryArray.length == 0) array = new int[10];
-        else {
-            array = ordinaryArray;
-            cursor = ordinaryArray.length;
-            expandArray();
-        }
-    }
 
     // 9. Удаление элемента по значению, возвращается индекс удалённого элемента
 
