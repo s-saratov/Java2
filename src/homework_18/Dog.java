@@ -44,11 +44,6 @@ public class Dog {
         return jumpHeight;
     }
 
-    public void setJumpHeight(float jumpHeight) {
-        if (jumpHeight < 0) return;
-        this.jumpHeight = jumpHeight;
-    }
-
     public double getMaxJumpHeightJumpHeight() {
         return maxJumpHeight;
     }
@@ -69,13 +64,14 @@ public class Dog {
             do { train(); } while (jumpHeight < barrier);
         }
         System.out.printf("Але - гоп! Собака %s успешно взяла высоту %.1f сантиметров.\n", name, barrier);
-
     }
 
     // 2. Тренироваться
 
     public void train() {
-        jumpHeight += 10.0;
+
+        if (jumpHeight + 10.0 > maxJumpHeight) jumpHeight = maxJumpHeight;
+        else jumpHeight += 10.0;
         System.out.printf("Тренировка завершена. Теперь высота прыжка собаки %s составляет %.1f сантиметров.\n",
                 name, jumpHeight);
     }

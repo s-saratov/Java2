@@ -15,73 +15,73 @@ public class Calculator {
 
     // Метод сложения (с перегрузками)
 
-    static int addition (int a, int b) {
+    public static int addition (int a, int b) {
         return a + b;
     }
 
-    static long addition (long a, long b) {
+    public static long addition (long a, long b) {
         return a + b;
     }
 
-    static float addition (float a, float b) {
+    public static float addition (float a, float b) {
         return a + b;
     }
 
-    static double addition (double a, double b) {
+    public static double addition (double a, double b) {
         return a + b;
     }
 
     // Метод вычитания (с перегрузками)
 
-    static int subtraction (int diminutive, int deductible) {
+    public static int subtraction (int diminutive, int deductible) {
         return diminutive - deductible;
     }
 
-    static long subtraction (long diminutive, long deductible) {
+    public static long subtraction (long diminutive, long deductible) {
         return diminutive - deductible;
     }
 
-    static float subtraction (float diminutive, float deductible) {
+    public static float subtraction (float diminutive, float deductible) {
         return diminutive - deductible;
     }
 
-    static double subtraction (double diminutive, double deductible) {
+    public static double subtraction (double diminutive, double deductible) {
         return diminutive - deductible;
     }
 
     // Метод умножения (с перегрузками)
 
-    static int multiplication (int a, int b) {
+    public static int multiplication (int a, int b) {
         return a * b;
     }
 
-    static long multiplication (long a, long b) {
+    public static long multiplication (long a, long b) {
         return a * b;
     }
 
-    static float multiplication (float a, float b) {
+    public static float multiplication (float a, float b) {
         return a * b;
     }
 
-    static double multiplication (double a, double b) {
+    public static double multiplication (double a, double b) {
         return a * b;
     }
 
     // Метод деления
 
-    static int division (int divisible, int divider) {
+    public static int division (int divisible, int divider) {
         return divisible / divider;
     }
 
-    static long division (long divisible, long divider) {
+    public static long division (long divisible, long divider) {
         return divisible / divider;
     }
 
-    static float division (float divisible, float divider) {
+    public static float division (float divisible, float divider) {
         return divisible / divider;
     }
 
-    static double division (double divisible, double divider) {
+    public static double division (double divisible, double divider) {
         return divisible / divider;
     }
 
