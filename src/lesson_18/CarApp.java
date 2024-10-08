@@ -31,7 +31,5 @@ public class CarApp {
         int sum = MathUtils.sumOfInts(25, 10);
         System.out.println("sum: " + sum);
 
-
-
     }
 }
