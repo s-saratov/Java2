@@ -35,7 +35,6 @@ public class Lesson16 {
         barsik.age = 12;
 
         // Возможно создавать несколько объектов с одинаковыми значениями полей, если это нужно
-        // TODO: Дописать
         System.out.println("========================\n");
         Cat cat1 = new Cat("Barsik", "grey", 3);
         cat1.whoAmI();
@@ -52,6 +51,8 @@ public class Lesson16 {
         catClone.whoAmI();
         cat1.whoAmI();
 
+        System.out.println("============== Kratos");
+
         catClone = new Cat("Kratos", "black", 99);
         catClone.whoAmI();
         cat1.whoAmI();
@@ -63,7 +64,6 @@ public class Lesson16 {
             System.out.println(catClone.name);
             catClone.whoAmI();
         }
-
 
     }
 

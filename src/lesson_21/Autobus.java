@@ -2,6 +2,15 @@ package lesson_21;
 
 import java.util.Arrays;
 
+/*
+
+Task 1
+Воспроизвести код, написанный на уроке.
+
+
+
+ */
+
 public class Autobus {
 
     /*
@@ -106,7 +115,7 @@ public class Autobus {
         }
 
         // Свободного места нет
-        System.out.printf("В автобусе id %s свободных мест нет!\n", this.id);
+        System.out.printf("В автобусе id %d свободных мест нет!\n", this.id);
         return false;
 
     }

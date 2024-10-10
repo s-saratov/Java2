@@ -29,5 +29,3 @@ public class Task2 {
     }
 
 }
-
-// TODO: в MAIN
