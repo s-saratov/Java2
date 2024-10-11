@@ -14,7 +14,7 @@ public class Human {
     // Поля
 
     private int speed = 10;     // скорость
-    private int restTime = 15;  // время отыха
+    private int restTime = 15;  // время отдыха
 
     // Геттеры и сеттеры
 
