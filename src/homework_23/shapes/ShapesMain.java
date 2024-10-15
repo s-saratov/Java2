@@ -17,11 +17,19 @@ public class ShapesMain {
         shapes[1] = square;
         shapes[2] = triangle;
 
+        double sumPerimeters = 0;
+        double sumAreas = 0;
+
         // Выводим на экран список фигур и их площади
 
         for (int i = 0; i < shapes.length; i++) {
             System.out.println("№ " + (i + 1) + ": " + shapes[i].toString());
+            sumPerimeters += shapes[i].getPerimeter();
+            sumAreas += shapes[i].getArea();
         }
+
+        System.out.println("\nОбщий периметр фигур в массиве: " + sumPerimeters);
+        System.out.println("Общая площадь фигур в массиве: " + sumAreas);
 
     }
 

@@ -15,6 +15,17 @@ public class Triangle extends Shape {
         this.a = a;
         this.b = b;
         this.c = c;
+
+        if (!isValidSides()) {
+            // Стороны неправильные. Построить такой треугольник невозможно.
+            System.out.println("Построить треугольник с такими сторонами невозможно");
+            // TODO: Надо выбросить ошибку или закрыть конструктор
+            // Устанавливаем значения "по умолчанию"
+            this.a = 3;
+            this.b = 4;
+            this.c = 5;
+        }
+
         calculateArea();
         calculatePerimeter();
     }
@@ -31,9 +42,14 @@ public class Triangle extends Shape {
 
     // 2. Рассчитывает периметр треугольника
 
-
     @Override
     void calculatePerimeter() {
         setPerimeter(a + b + c);
+    }
+
+    // 3. Проверяет, возможно ли создать треугольник с заданными длинами сторон
+
+    private boolean isValidSides() {
+        return a + b > c && a + c > b && b + c > a;
     }
 }
