@@ -8,7 +8,7 @@ public class Duck implements Flyable, Swimable {
     }
 
     @Override
-    public void swim("Duck is swimming") {
-
+    public void swim() {
+        System.out.println("Duck is swimming");
     }
 }
