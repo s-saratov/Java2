@@ -10,7 +10,7 @@ public class PaymentApp {
         Currencies.setINRtoUSD(83.25);
         Currencies.setCNYtoUSD(7.12);
 
-        // Создаём банковский счёт с остатком 1000 долларов США
+        // Создаём банковский счёт с остатком 1000 евро
 
         BankAccount bankAccount = BankAccount.createAccount(1000.00, "EUR");
 
@@ -18,27 +18,27 @@ public class PaymentApp {
 
         bankAccount.checkBalance();
 
-        // Снимаем со счёта 100 долларов США и выводим на экран баланс
+        // Снимаем со счёта 100 евро и выводим на экран баланс
 
-        bankAccount.withdrawMoney(10.0);
+        bankAccount.withdrawMoney(100.00);
         bankAccount.checkBalance();
 
         // Вносим на счёт 300 долларов США и выводим на экран баланс
 
-        bankAccount.depositTransfer(300);
+        bankAccount.depositTransfer(300.00);
         bankAccount.checkBalance();
 
         // Создаём электронный кошелёк с остатком 300 индийский рупий
 
-        ElectronicWallet electronicWallet = ElectronicWallet.createAccount(300, "INR");
+        ElectronicWallet electronicWallet = ElectronicWallet.createAccount(300.00, "INR");
 
         // Выводим на экран баланс электронного кошелька
 
         electronicWallet.checkBalance();
 
-        // Переводим 100 долларов со счёта на электронный кошелёк
+        // Переводим 100 евро со счёта на электронный кошелёк
 
-        bankAccount.transferMoney(50, electronicWallet);
+        bankAccount.transferMoney(100.00, electronicWallet);
 
         // Выводим итоговые балансы
 

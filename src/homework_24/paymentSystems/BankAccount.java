@@ -40,8 +40,8 @@ public class BankAccount implements PaymentSystem {
 
     @Override
     public void withdrawMoney(double amount) {
-        if (amount > 0) {
-            BigDecimal withdrawSum = BigDecimal.valueOf(amount).setScale(2, RoundingMode.HALF_UP);
+        if (amount > 0 && balance.compareTo(convertToBigDecimal(amount)) > 0) {
+            BigDecimal withdrawSum = convertToBigDecimal(amount);
             balance = balance.subtract(withdrawSum);
         }
     }
@@ -51,8 +51,8 @@ public class BankAccount implements PaymentSystem {
     @Override
     public void depositTransfer(double amount) {
         if (amount > 0) {
-            BigDecimal withdrawSum = BigDecimal.valueOf(amount).setScale(2, RoundingMode.HALF_UP);
-            balance = balance.add(withdrawSum);
+            BigDecimal depositSum = convertToBigDecimal(amount);
+            balance = balance.add(depositSum);
         }
 
     }
@@ -61,24 +61,28 @@ public class BankAccount implements PaymentSystem {
 
     @Override
     public void transferMoney(double amount, BankAccount recipient) {
-        if (balance.compareTo(BigDecimal.valueOf(amount)) > 0) {
+        if (amount > 0 && balance.compareTo(convertToBigDecimal(amount)) > 0) {
             this.withdrawMoney(amount);
 
-            BigDecimal transferAmount = toUSD(this, BigDecimal.valueOf(amount));
+            BigDecimal transferAmount = toUSD(this, convertToBigDecimal(amount));
 
             if (recipient.currency.equals("EUR")) {
-                recipient.balance = recipient.balance.add(transferAmount.multiply(BigDecimal.valueOf(Currencies.getEURtoUSD())).setScale(2, RoundingMode.HALF_UP));
+                recipient.balance = recipient.balance.add(toUER(transferAmount).setScale(2));
             }
             if (recipient.currency.equals("INR")) {
-                recipient.balance = recipient.balance.add(transferAmount.multiply(BigDecimal.valueOf(Currencies.getINRtoUSD())).setScale(2, RoundingMode.HALF_UP));
+                recipient.balance = recipient.balance.add(toINR(transferAmount)).setScale(2);
             }
             if (recipient.currency.equals("CNY")) {
-                recipient.balance = recipient.balance.add(transferAmount.multiply(BigDecimal.valueOf(Currencies.getCNYtoUSD())).setScale(2, RoundingMode.HALF_UP));
+                recipient.balance = recipient.balance.add(toCNY(transferAmount).setScale(2));
             }
             else recipient.balance.add(transferAmount);
 
         }
-        else System.out.println("Перевод невозможен. На счёте недостаточно средств!");
+        else if (amount < 0) System.out.println("Перевод невозможен. Сумма перевода отрицательная");
+
+        else if (balance.compareTo(convertToBigDecimal(amount)) < 0) {
+            System.out.println("Перевод невозможен. На счёте недостаточно средств.");
+        }
 
     }
 
@@ -113,13 +117,13 @@ public class BankAccount implements PaymentSystem {
 
     private BigDecimal toUSD (BankAccount bankAccount, BigDecimal amount) {
         if (bankAccount.currency.equals("EUR")) {
-            return bankAccount.balance.divide(BigDecimal.valueOf(Currencies.getEURtoUSD()), 2, RoundingMode.HALF_UP);
+            return amount.divide(convertToBigDecimal(Currencies.getEURtoUSD()), 2, RoundingMode.HALF_UP);
         }
         if (bankAccount.currency.equals("INR")) {
-            return bankAccount.balance.divide(BigDecimal.valueOf(Currencies.getINRtoUSD()), 2, RoundingMode.HALF_UP);
+            return amount.divide(convertToBigDecimal(Currencies.getINRtoUSD()), 2, RoundingMode.HALF_UP);
         }
         if (bankAccount.currency.equals("CNY")) {
-            return bankAccount.balance.divide(BigDecimal.valueOf(Currencies.getCNYtoUSD()), 2, RoundingMode.HALF_UP);
+            return amount.divide(convertToBigDecimal(Currencies.getINRtoUSD()), 2, RoundingMode.HALF_UP);
         }
         return bankAccount.balance;
     }
@@ -127,19 +131,25 @@ public class BankAccount implements PaymentSystem {
     // 8. Пересчёт из долларов США в евро (вспомогательный)
 
     private BigDecimal toUER (BigDecimal amount) {
-        return amount.multiply((BigDecimal.valueOf(Currencies.getEURtoUSD())));
+        return amount.multiply((BigDecimal.valueOf(Currencies.getEURtoUSD())).setScale(2, RoundingMode.HALF_UP));
     }
 
     // 9. Пересчёт из долларов США в индийские рупии (вспомогательный)
 
     private BigDecimal toINR (BigDecimal amount) {
-        return amount.multiply((BigDecimal.valueOf(Currencies.getINRtoUSD())));
+        return amount.multiply((BigDecimal.valueOf(Currencies.getINRtoUSD())).setScale(2, RoundingMode.HALF_UP));
     }
 
     // 10. Пересчёт из долларов США в юани (вспомогательный)
 
     private BigDecimal toCNY (BigDecimal amount) {
-        return amount.multiply((BigDecimal.valueOf(Currencies.getCNYtoUSD())));
+        return amount.multiply((BigDecimal.valueOf(Currencies.getCNYtoUSD())).setScale(2, RoundingMode.HALF_UP));
+    }
+
+    // 11. Конвертация типа double в bigDecimal (вспомогательный)
+
+    private BigDecimal convertToBigDecimal(double value) {
+        return new BigDecimal(String.valueOf(value)).setScale(2, RoundingMode.HALF_UP);
     }
 
 }
