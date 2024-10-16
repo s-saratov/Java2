@@ -8,24 +8,13 @@ public class Triangle extends Shape {
     private double b;  // длина стороны B
     private double c;  // длина стороны C
 
-    // Конструктор
+    // Закрытый конструктор
 
-    public Triangle(String name, double a, double b, double c) {
+    private Triangle(String name, double a, double b, double c) {
         super(name);
         this.a = a;
         this.b = b;
         this.c = c;
-
-        if (!isValidSides()) {
-            // Стороны неправильные. Построить такой треугольник невозможно.
-            System.out.println("Построить треугольник с такими сторонами невозможно");
-            // TODO: Надо выбросить ошибку или закрыть конструктор
-            // Устанавливаем значения "по умолчанию"
-            this.a = 3;
-            this.b = 4;
-            this.c = 5;
-        }
-
         calculateArea();
         calculatePerimeter();
     }
@@ -52,4 +41,36 @@ public class Triangle extends Shape {
     private boolean isValidSides() {
         return a + b > c && a + c > b && b + c > a;
     }
+
+    // 4. Активирует конструктор, если с переданными сторонами возможно построить треугольник
+
+    public static Triangle createTriangle(String name, double a, double b, double c) {
+        if (a + b > c && a + c > b && b + c > a) return new Triangle(name, a, b, c);
+        return null;
+    }
+
+    /*
+    Старая реализация конструктора
+
+    public Triangle(String name, double a, double b, double c) {
+        super(name);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+
+        if (!isValidSides()) {
+            // Стороны неправильные. Построить такой треугольник невозможно.
+            System.out.println("Построить треугольник с такими сторонами невозможно");
+            // TODO: Надо выбросить ошибку или закрыть конструктор
+            // Устанавливаем значения "по умолчанию"
+            this.a = 3;
+            this.b = 4;
+            this.c = 5;
+        }
+
+        calculateArea();
+        calculatePerimeter();
+    }
+     */
+
 }
