@@ -55,5 +55,3 @@ public class Util {
     }
 
 }
-
-// TODO: уточнить на консультации про <? extends Number>

@@ -101,8 +101,6 @@ public class MagicArrayGen<T> implements MyList<T> {
         return newArray;
     }
 
-    // TODO: задать вопрос по этому методу
-
     // 8. Удаляет элемент по значению, возвращает true в случае успешного удаления (входит в интерфейс MyList)
 
     @Override
@@ -127,7 +125,6 @@ public class MagicArrayGen<T> implements MyList<T> {
             return tmp;
         }
         return null;
-        //TODO: уточнить, что возвращать в else
     }
 
     // 10. Возвращает true, если массив пустой (входит в интерфейс MyList)
@@ -145,8 +142,6 @@ public class MagicArrayGen<T> implements MyList<T> {
             return array[index];
         }
         return null;
-        // Написать код, если индекс "некорректный"
-        //TODO: поправить обработку некорректного индекса
     }
 
     // 12. Перезаписывает значение по index (входит в интерфейс MyList)
