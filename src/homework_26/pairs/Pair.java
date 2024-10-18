@@ -63,4 +63,13 @@ public class Pair <T> {
         second = tmp;
     }
 
+    // 6. Возвращает строковое представление объекта класса
+
+    public String toString() {
+        return "Pair{" +
+                "first = " + first +
+                ", second = " + second +
+                '}';
+    }
+
 }

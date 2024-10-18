@@ -9,6 +9,7 @@ Task 0
 
 import homework_25.MyList;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class MagicArrayGen<T> implements MyList<T> {
@@ -98,9 +99,11 @@ public class MagicArrayGen<T> implements MyList<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T[] toArray() {
-        T[] newArray = (T[]) new Object[cursor];
-        for (int i = 0; i < cursor; i++) newArray[i] = array[i];
-        return newArray;
+        if (cursor == 0) return null;
+        Class<T> clazz = (Class<T>) array[0].getClass();
+        T[] result = (T[]) Array.newInstance(clazz, cursor);
+        for (int i = 0; i < result.length; i++) result[i] = array[i];
+        return result;
     }
 
     // 8. Удаляет элемент по значению, возвращает true в случае успешного удаления (входит в интерфейс MyList)
@@ -126,7 +129,7 @@ public class MagicArrayGen<T> implements MyList<T> {
             cursor--;
             return tmp;
         }
-        return null;
+        else return null;
     }
 
     // 10. Возвращает true, если массив пустой (входит в интерфейс MyList)
@@ -150,7 +153,11 @@ public class MagicArrayGen<T> implements MyList<T> {
 
     @Override
     public void set(int index, T value) {
-        array[index] = value;
+        if (index >= 0 && index < cursor) {
+            // Если индекс "правильный", присваиваем новое значение
+            array[index] = value;
+        }
+        // Если нет, не делаем ничего
     }
 
     // 13. Выводит в консоль значения массива
