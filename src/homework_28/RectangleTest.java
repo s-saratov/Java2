@@ -40,22 +40,36 @@ public class RectangleTest {
         rectangles.add(new Rectangle(5.0, 3.0));
         rectangles.add(new Rectangle(4.0, 2.0));
         rectangles.add(new Rectangle(5.0, 3.0)); // Дубликат
+        rectangles.add(new Rectangle(5.0, 3.0)); // Дубликат
         rectangles.add(new Rectangle(6.0, 4.0));
         rectangles.add(new Rectangle(5.0, 3.0)); // Дубликат
 
+        // Цикл for-each
         System.out.println("Список до удаления дубликатов:");
-        for (int i = 0; i < rectangles.size(); i++) {
-            System.out.println(rectangles.get(i));
+        for (Rectangle rectangle : rectangles) {
+            System.out.println(rectangle);
         }
 
         Rectangle rectangleToRemove = new Rectangle(5.0, 3.0);
         RectangleUtils.removeDuplicates(rectangles, rectangleToRemove);
 
         System.out.println("\nСписок после удаления дубликатов:");
-        for (int i = 0; i < rectangles.size(); i++) {
-            System.out.println(rectangles.get(i));
+        for (Rectangle rectangle : rectangles) {
+            System.out.println(rectangle);
+        }
+
+        // 5. Удаляем последний оставшийся дубликат
+
+        RectangleUtils.removeAllDuplicates(rectangles, rectangleToRemove);
+
+        System.out.println("\nСписок после удаления последнего оставшегося дубликата:");
+        for (Rectangle rectangle : rectangles) {
+            System.out.println(rectangle);
         }
 
     }
 
 }
+
+// TODO: попросить на консультации выкладывать тесты, позволяющие выявить ошибку
+// TODO: попросить на консультации рассказать подробнее о "синтетическом сахаре" в Java, привести примеры
