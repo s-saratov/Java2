@@ -129,11 +129,8 @@ public class Rectangle {
 
         if (!(obj instanceof Rectangle)) return false; // проверяем на возможность привести к Rectangle
         Rectangle rectangle = (Rectangle) obj;
-        return Double.compare(height, rectangle.height) == 0 &&
-                Double.compare(length, rectangle.length) == 0;
+        return height == rectangle.height &&
+                length == rectangle.length;
     }
 
 }
-
-// TODO: спросить на консультации, имеет ли смысл использовать Double.compare вместо ==, если речь о примитивном типе данных
-// TODO: спросить про метод hashCode()
