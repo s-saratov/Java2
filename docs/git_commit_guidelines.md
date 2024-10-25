@@ -25,7 +25,7 @@
 ## 4. Исправления ошибок или улучшение кода
 Когда исправляешь ошибки или делаешь рефакторинг:
 
-- `Fix typo in method name`
+- `Fix typo in method model`
 - `Refactor code for better performance`
 - `Fix logic error in car_age method`
 

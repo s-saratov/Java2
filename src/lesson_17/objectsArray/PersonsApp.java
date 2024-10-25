@@ -22,7 +22,7 @@ public class PersonsApp {
 
         System.out.println(peoples[0].toString());
 
-        System.out.println("peoples[0].getName(): " + peoples[0].getName());
+        System.out.println("peoples[0].getModel(): " + peoples[0].getName());
 
         peoples[0].setName("Peter");
         System.out.println("peoples[0]: " + peoples[0].toString());
@@ -31,7 +31,7 @@ public class PersonsApp {
         for (int i = 0; i < peoples.length; i++) {
             if (peoples[i] != null) {
                 System.out.println(peoples[i].toString());
-                System.out.println("peoples[i].getName(): " + peoples[i].getName());
+                System.out.println("peoples[i].getModel(): " + peoples[i].getName());
             }
             else System.out.println("Null!!!");
         }

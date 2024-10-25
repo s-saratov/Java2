@@ -30,10 +30,9 @@ public class PersonTest {
     @Order(10)
     void testValidEmailSet() {
         String validEmail = "valid@test.com";
-
         person.setEmail(validEmail);
         System.out.println("getEmail: " + person.getEmail());
-
+        Assertions.assertNotNull(person.getEmail());
         Assertions.assertEquals(validEmail, person.getEmail());
     }
 
@@ -78,10 +77,9 @@ public class PersonTest {
     @Order(30)
     void testValidPasswordSet() {
         String validPassword = "A1b2c3d!"; // пароль, соответствущий всем требованиям
-
         person.setPassword(validPassword);
         System.out.println("getPassword: " + person.getPassword());
-
+        Assertions.assertNotNull(person.getPassword());
         Assertions.assertEquals(validPassword, person.getPassword());
     }
 
@@ -103,7 +101,8 @@ public class PersonTest {
                 "1234567",  // длиной меньше 8 символов
                 "abcdefgh",         // без цифр
                 "A1B2C3D4",         // без строчных букв
-                "a1b2c3d4"          // без прописных букв и спецсимволов
+                "a1b2c3d!",          // без прописных букв и спецсимволов
+                "A1b2c3d4"          // без спецсимволов
         );
     }
 

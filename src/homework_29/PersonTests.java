@@ -83,6 +83,3 @@ public class PersonTests {
     }
 
 }
-
-// TODO: узнать на консультации, почему нельзя передать в аннотацию @ValueSource() массив строк с параметрами
-//  private static final

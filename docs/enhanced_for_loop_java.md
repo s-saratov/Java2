@@ -63,14 +63,14 @@ In this example, the `foreach` loop iterates through a set of integers and print
 ## Example 4: Working with Objects
 ```java
 class Dog {
-    String name;
+    String model;
 
-    Dog(String name) {
-        this.name = name;
+    Dog(String model) {
+        this.model = model;
     }
 
     void bark() {
-        System.out.println(name + " is barking!");
+        System.out.println(model + " is barking!");
     }
 }
 
