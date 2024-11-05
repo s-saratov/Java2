@@ -18,12 +18,13 @@ public class ComparatorApp {
 
         System.out.println(Arrays.toString(strings));
 
-        Car[] cars = new Car[5];
-        cars[0] = new Car ("Alfa", 2021, 120);
-        cars[1] = new Car ("BMW", 2000, 190);
-        cars[2] = new Car ("Citroen", 2018, 190);
-        cars[3] = new Car ("VW", 2021, 250);
-        cars[4] = new Car ("Ferrari", 2024, 300);
+        Car[] cars = new Car[6];
+        cars[0] = new Car("Alfa", 2021, 120);
+        cars[1] = new Car("BMW", 2000, 190);
+        cars[2] = new Car("Citroen", 2018, 190);
+        cars[3] = new Car("VW", 2021, 250);
+        cars[4] = new Car("Ferrari", 2024, 300);
+        cars[5] = new Car("Ferrari", 2020, 330);
 
         System.out.println(Arrays.toString(cars));
 
@@ -172,8 +173,6 @@ public class ComparatorApp {
 
         System.out.println(Arrays.toString(cars));
 
-        // TODO: Comparator - статические методы
-
         Arrays.sort(cars, Comparator.comparing(Car::getYear));
         // Две альтернативы поменять порядок
         Arrays.sort(cars, Comparator.comparing(Car::getModel).reversed());
@@ -182,6 +181,69 @@ public class ComparatorApp {
 
         Arrays.sort(cars, Comparator.comparing(Car::getYear).thenComparing(Car::getModel));
 
+        // Материал с консультации 05.11.2024
+
+        System.out.println("\n======= Материал с консультации 05.11.2024 =======\n");
+
+        Arrays.sort(cars, (car1, car2) -> Integer.compare(car1.getYear(), car2.getYear()));
+        printCars(cars);
+
+        // Статический метод comparing используется для создания компаратора
+        Comparator<Car> comparatorYear = Comparator.comparing(Car::getYear);
+        Arrays.sort(cars, comparatorYear);
+
+        printCars(cars);
+
+        /*
+        Comparator.naturalOrder() - естественный порядок (значения по-умолчанию)
+        Comparator.reverseOrder() - компаратор, который сортирует в обратном порядке
+         */
+
+        Arrays.sort(cars, Comparator.comparing(Car::getYear, Comparator.reverseOrder()));
+
+        printCars(cars);
+
+        // cars[0] = null;
+        // Comparator.nullFirst(Comparator.comparing(Car::getModel) - обрабатывает null как наименьшее значение
+        Arrays.sort(cars, Comparator.nullsFirst(Comparator.comparing(Car::getModel)));
+        // Comparator.nullsLast(Comparator.comparing(Car::getModel))
+        Arrays.sort(cars, Comparator.nullsLast(Comparator.comparing(Car::getModel)));
+
+        printCars(cars);
+
+        // Дефолтные методы:
+        // 1. reversed() - возвращает обратный компаратор
+        // 2. thenComparing(Comparator other) - позволяет создавать цепочки компараторов для последовательного сравнения
+
+        Arrays.sort(cars, Comparator.comparing(Car::getModel).reversed());
+        printCars(cars);
+
+        // Сортируем по модели, если модели совпали, то сортируем по году выпуска (в естественном порядке)
+        Arrays.sort(cars, Comparator.comparing(Car::getModel).thenComparing(Car::getYear));
+        printCars(cars);
+
+        // Сортируем по модели в естественном порядке, если модели совпали, то сортируем по году выпуска в обратном порядке
+        Arrays.sort(cars, Comparator.comparing(Car::getModel).thenComparing(Car::getYear, Comparator.reverseOrder()));
+        printCars(cars);
+
+        // Сортируем по году выпуска в прямом порядке. Если год совпал, в порядке убывания максимальной скорости
+        Arrays.sort(cars, Comparator.comparing(Car::getYear).thenComparing(Car::getSpeed, Comparator.reverseOrder()));
+        printCars(cars);
+
+        Arrays.sort(cars, Comparator.comparing(Car::getYear).thenComparing(Car::getSpeed).reversed());
+        printCars(cars);
+
+        // Сортируем по скорости в порядке убывания, если скорости одинаковые, то по возрастанию года
+        Arrays.sort(cars, Comparator.comparing(Car::getSpeed, Comparator.reverseOrder()).thenComparing(Car::getYear));
+        printCars(cars);
+
+    }
+
+    private static void printCars(Car[] cars) {
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+        System.out.println("==================== \n");
     }
 
 }

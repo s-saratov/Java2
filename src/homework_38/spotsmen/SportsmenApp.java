@@ -35,7 +35,9 @@ public class SportsmenApp {
 
             @Override
             public int compare(Sportsman sportsman1, Sportsman sportsman2) {
-                return sportsman1.getAge() - sportsman2.getAge();
+                return Integer.compare(sportsman1.getAge(), sportsman2.getAge());
+                // Сравнение примитивов. Может произойти переполнение типа -> некорректные значения операции вычитания
+                // return sportsman1.getAge() - sportsman2.getAge();
             }
         });
 

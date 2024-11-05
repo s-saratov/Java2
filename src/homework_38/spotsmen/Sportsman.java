@@ -79,3 +79,5 @@ public class Sportsman implements Comparable<Sportsman> {
     }
 
 }
+
+// TODO: сообщить, что домашнее задание не загружается в LMS

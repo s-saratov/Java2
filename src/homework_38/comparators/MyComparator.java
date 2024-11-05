@@ -17,7 +17,7 @@ public class MyComparator implements Comparator<Integer> {
     public int compare(Integer a, Integer b) {
         if (a % 2 == 0 && b % 2 != 0) return -1;        // если a чётное, а b нечётное
         else if (a % 2 != 0 && b % 2 == 0) return 1;    // если a нечётное, а b чётное
-        else return a - b;                              // если оба числа чётные или нечётные
+        else return Integer.compare(a, b);              // если оба числа чётные или нечётные
 
     }
 
