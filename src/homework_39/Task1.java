@@ -28,11 +28,28 @@ public class Task1 {
 
         // Коллекция "универсальных" имён
 
-        List<String> unisexNames = new ArrayList<>(List.copyOf(maleNames));
-        unisexNames.retainAll(femaleNames);
+        System.out.println("\n\"Универсальные\" имена (метод без дженерика): " + intersection(maleNames, femaleNames));
 
-        System.out.println("\n\"Универсальные\" имена: " + unisexNames.toString());
+        System.out.println("\n\"Универсальные\" имена (метод c дженериком): " + intersectionGen(maleNames, femaleNames));
 
     }
 
+    // Метод без дженерика
+
+    public static List<String> intersection(List<String> list1, List<String> list2) {
+        List<String> result = new ArrayList<>(list1);
+        result.retainAll(list2);
+        return result;
+    }
+
+    // Метод с дженериком
+
+    public static <T> List <T> intersectionGen (List<T> list1, List<T> list2) {
+        List<T> result = new ArrayList<T>(list1);
+        result.retainAll(list2);
+        return result;
+    }
+
 }
+
+// TODO: дописать МЕТОДЫ по коду преподавателя
