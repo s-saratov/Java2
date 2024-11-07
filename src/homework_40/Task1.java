@@ -19,19 +19,22 @@ public class Task1 {
 
     }
 
-    public static SortedSet<String> makeListOfWords(String string) {
-        // Заменяем все не буквы на пустоту
-        String newString = string.replaceAll("[^a-zA-Z0-9а-яА-Я ]", "");
+    public static Set<String> makeListOfWords(String string) {
+        // Заменяем все не буквы и не пробелы на пустоту
+        // trim() убирает пробелы в начале и в конце строки -- "  String string  " ->
+        String newString = string.trim().replaceAll("[^a-zA-Z0-9а-яА-Я ]", "");
 
-        // Преобразование строки в массив слов
-        String[] words = newString.split(" ");
+        // Преобразование строки в массив слов по пробельному символу (в любом количестве)
+        String[] words = newString.split("\\s+");
 
         // Компаратор для сортировки по длине строки, затем по естественному порядку
         Comparator<String> lengthComparator = Comparator.comparingInt(String::length).
                 thenComparing(Comparator.naturalOrder());
 
+        // Конструктор может быть пустым, может принимать коллекцию или компаратор.
+        // Но не может одновременно принимать коллекцию + компаратор
         // Создаём массив с заданным компаратором и добавляем в него слова
-        SortedSet<String> result = new TreeSet<String>(lengthComparator);
+        Set<String> result = new TreeSet<String>(lengthComparator);
         result.addAll(Arrays.asList(words));
 
         return result;

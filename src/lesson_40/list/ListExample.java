@@ -21,7 +21,7 @@ public class ListExample {
         list = new ArrayList<>(List.of(1, -10, 5, 0, 25, -100)); // принимает коллекцию
         // Создаёт список, содержащий все элементы указанной коллекции (копирование элементов другой коллекции)
 
-        // Конструктор
+        // Конструкторы Linked List
         list = new LinkedList<>(); // создаёт пустой список
         list = new LinkedList<>(List.of(1, -10, 5, 0, 25, -100)); // создаёт список, содержащий все элементы указанной коллекции
 
@@ -75,10 +75,6 @@ public class ListExample {
         List<Integer> subList = list.subList(1, 5);
         System.out.println(subList);
 
-
-
     }
 
 }
-
-// TODO: переписать код начала занятия!
