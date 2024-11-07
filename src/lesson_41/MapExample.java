@@ -7,7 +7,7 @@ public class MapExample {
     public static void main(String[] args) {
 
         // Конструкторы
-        Map<String, Integer> test = new HashMap<>(); //  создаёт пустой список на 16 корзин. Коэффициент загрузки 0,75
+        Map<String, Integer> test = new HashMap<>(); // создаёт пустой список на 16 корзин. Коэффициент загрузки 0,75
         // (12 элементов)
 
         test = new HashMap<>(32); // cоздаёт пустой список на 32 корзины.
