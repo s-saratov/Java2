@@ -72,7 +72,7 @@ public class EmailValidator {
 
     // 2. Проверка пароля на соответствие требованиям
 
-    private void isPasswordValid(String password) throws PasswordValidateException{
+    public static void isPasswordValid(String password) throws PasswordValidateException{
 
         if (password == null) throw new PasswordValidateException("null was passed"); // исключаем передачу null
 
@@ -81,16 +81,23 @@ public class EmailValidator {
         // Условие № 1: длина >= 8 символов
         if (password.length() < 8) throw new PasswordValidateException("the length is less than 8 characters");
 
+        boolean c2 = false;
+        boolean c3 = false;
+        boolean c4 = false;
+        boolean c5 = false;
+
         for (int i = 0; i < password.length(); i++) {
-            // условие № 2: минимум 1 цифра
-            if (!Character.isDigit(password.charAt(i))) throw new PasswordValidateException("there are no numbers");
-            // условие № 3: минимум 1 маленькая буква
-            if (!Character.isLowerCase(password.charAt(i))) throw new PasswordValidateException("small letters are missing");
-            // условие № 4: минимум 1 большая буква
-            if (!Character.isUpperCase(password.charAt(i))) throw new PasswordValidateException("capital letters are missing");
-            // условие № 5: минимум 1 спецсимвол (!%$@&*()[].,-)
-            if (specialChars.indexOf(password.charAt(i)) == -1) throw new PasswordValidateException("special characters are missing");
+            if (Character.isDigit(password.charAt(i))) c2 = true; // условие № 2: минимум 1 цифра
+            if (Character.isLowerCase(password.charAt(i))) c3 = true; // условие № 3: минимум 1 маленькая буква
+            if (Character.isUpperCase(password.charAt(i))) c4 = true; // условие № 4: минимум 1 большая буква
+            if (specialChars.indexOf(password.charAt(i)) != -1) c5 = true; // условие № 5: минимум 1 спецсимвол (!%$@&*()[].,-)
+
         }
+
+        if (!c2) throw new PasswordValidateException("there are no numbers");
+        if (!c3) throw new PasswordValidateException("small letters are missing");
+        if (!c4) throw new PasswordValidateException("capital letters are missing");
+        if (!c5) throw new PasswordValidateException("special characters are missing");
 
     }
 
