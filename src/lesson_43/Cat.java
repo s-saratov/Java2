@@ -19,7 +19,7 @@ public class Cat {
     // Геттеры и сеттеры
 
     public String getName() {
-        System.out.println("call getName " + name);
+        // System.out.println("call getName " + name);
         return name;
     }
 

@@ -43,7 +43,9 @@ public class Task1 {
         // Фильтруем коллекцию с помощью Stream API
         List<Integer> filteredList = numbers.stream()
                 .filter(i -> i > 10 && i < 100 && i % 2 == 0)   // фильтр условий: чётные, больше 10 и меньше 100
+//                .toList()                                     // Java 17 или выше
                 .collect(Collectors.toList());
+
 
         return filteredList;
     }

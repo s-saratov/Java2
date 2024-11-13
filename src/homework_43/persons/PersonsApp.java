@@ -10,6 +10,7 @@ Task 3
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PersonsApp {
@@ -36,6 +37,7 @@ public class PersonsApp {
         List<Person> filteredPeople = people.stream()
                 .filter(person -> person.getAge() > 25)                 // фильтруем по возрасту: старше 25 лет
                 .filter(person -> person.getCity().equals("Berlin"))    // фильтруем по городу: Берлин
+//                .filter(p -> Objects.equals("Berlin", p.getCity())    // второй вариант фильтрации, исключающий null
                 .collect(Collectors.toList());
 
         // Выводим список в консоль
