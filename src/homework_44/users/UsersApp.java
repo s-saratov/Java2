@@ -29,19 +29,41 @@ public class UsersApp {
         // Выводим список в консоль
         System.out.println("Список пользователей: " + users);
 
+        // Создаём Optional c результатами поиска
+        Optional<User> result3 = findUserById2(users, 3);
+        Optional<User> result7 = findUserById2(users, 7);
+
         // Проверяем работу метода
-        System.out.println("Пробуем найти пользователя с id 3: " + findUserById(users, 3));
-        System.out.println("Пробуем найти пользователя с id 7: " + findUserById(users, 7));
+        System.out.print("Пробуем найти пользователя с id 3: ");
+        result3.ifPresentOrElse(System.out::println, () -> System.out.println("пользователь не найден"));
+        System.out.print("Пробуем найти пользователя с id 7: ");
+        result7.ifPresentOrElse(System.out::println, () -> System.out.println("пользователь не найден"));
 
     }
 
     public static Optional<User> findUserById(List<User> users, int id) {
+
+        // findFirst() - терминальный метод, возвращающий Optional, в который завёрнут первый элемент потока
+        // (если он есть) или пустой Optional
+        // Прекращает обработку потока, когда будет найден первый элемент.
 
         return users.stream()
                 .filter(user -> user.getId() == id)     // фильтруем по id
                 .findFirst()                            // получаем первого пользователя
                 .map(Optional::of)                      // оборачиваем его в Optional
                 .orElse(Optional.empty());        // если пользователя нет, возвращаем Optional.empty()
+
+    }
+
+    // Аналогичный метод без использования Stream API
+    public static Optional<User> findUserById2(List<User> users, int id) {
+
+        for (User user : users) {
+            if (user.getId() == id) {
+                return Optional.of(user);
+            }
+        }
+        return Optional.empty();
 
     }
 
