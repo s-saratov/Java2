@@ -153,6 +153,43 @@ public class JavaTime {
         Period представляет период времени в годах, месяцах и днях между двумя датами
          */
 
+        // Instant представляет момент времени в эпохе Unix (количество миллисекунд с 1 января 1970 года, 00:00 UTC)
+
+        Instant start = Instant.now();
+        System.out.println(start);
+        // Здесь будет какой-то код, время работы которого мы хотим засечь
+        int sum = 0;
+        for (int i = 0; i < 100_000; i++) {
+            sum += i;
+        }
+
+        Instant end = Instant.now();
+
+        // Duration - продолжительность в секундах и наносекундах.
+        // Чаще всего используется для измерения коротких промежутков времени.
+
+        Duration duration = Duration.between(start, end);
+        System.out.println("duration" + duration);
+
+        long millis = duration.toMillis();
+        System.out.println("millis: " + millis);
+        long nanoseconds = duration.toNanos();
+        System.out.println("nanoseconds: " + nanoseconds);
+        long seconds = duration.toSeconds();
+        System.out.println("seconds: " + seconds);
+
+        System.out.println("\n================= Period =================");
+        // Period представляет период времени в годах, месяцах и днях
+        LocalDate startDate = LocalDate.of(2022, 01, 1);
+        LocalDate endDate = LocalDate.now();
+        Period period = Period.between(startDate, endDate);
+        System.out.println("period: " + period);
+        System.out.println(period.getYears() + " | " + period.getMonths() + " | " + period.getDays());
+        System.out.println("period.toTotalMonths(): " + period.toTotalMonths());
+        // Можно получить период в выбранной единице времени (универсальный геттер)
+        // Не производит вычислений (нет пересчёта общего количества месяцев)
+        System.out.println(ChronoUnit.MONTHS);
+
         System.out.println("\n================= DateTimeFormatter =================");
         // DateTimeFormatter - формирование даты и времени
         LocalDateTime now = LocalDateTime.now();
@@ -178,6 +215,48 @@ public class JavaTime {
         d - однозначный или двухзначный день: 3 или 29
         dd - двузначный день: 03 или 29
          */
+
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String strDate = now.format(formatter1);
+        System.out.println(strDate);
+
+        // Из строки необходимо получить объект LDT с указанной в строке датой и временем
+
+        String dateForParse = "23-10-26 19:35";
+        System.out.println(dateForParse);
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm");
+
+        LocalDateTime parseDate = LocalDateTime.parse(dateForParse, formatter2);
+        System.out.println(parseDate.getDayOfWeek() + " | " + parseDate.getHour());
+        System.out.println(parseDate);
+
+        System.out.println("\n================= Task1 =================");
+
+        // "15-12-2022 20-46"
+        // Запарсить строку в формат LocalDateTime
+        // Распечатать отдельно месяц, день и час
+
+        String strDate1 = "15-12-2022 20-46";
+        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm");
+        LocalDateTime parseDate2 = LocalDateTime.parse(strDate1, formatter3);
+
+        System.out.println("Month: " + parseDate2.getMonth() + " | " + parseDate2.getMonth().getValue() + "; day: "
+                + parseDate2.getDayOfMonth() + "; hour: " + parseDate2.getHour());
+
+        System.out.println("\n================= Task2 =================");
+
+        // "30/01/23 1:47" 23- год.
+        // Какому дню недели соответствует вторая дата?
+        // Сколько дней между этими датами?
+
+        String strDate2 = "30/01/23 1:47";
+        DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("dd/MM/yy H:mm");
+        LocalDateTime parseDate3 = LocalDateTime.parse(strDate2, formatter4);
+
+        System.out.println(parseDate3.getDayOfWeek() + " | " + parseDate3.getDayOfWeek().getValue());
+        System.out.println(ChronoUnit.DAYS.between(parseDate2, parseDate3));
+        System.out.println(parseDate2.until(parseDate3, ChronoUnit.DAYS));
+
     }
     
 }
