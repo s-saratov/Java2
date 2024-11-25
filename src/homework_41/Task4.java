@@ -76,7 +76,7 @@ public class Task4 {
             if (currentCity.equals(departureCity)) break;
         }
 
-        // Очищаем карту, если города назначения в ней не оказалось
+        // Очищаем список, если города назначения в нём не оказалось
         if (!route.contains(destinationCity)) route.clear();
 
         return route;
