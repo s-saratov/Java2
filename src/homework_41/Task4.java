@@ -69,14 +69,14 @@ public class Task4 {
         // Добавляем в список город отправления
         route.add(departureCity);
 
-        // В цикле идём от ключа к значению и добавляем в карту
+        // В цикле идём от ключа к значению карты и добавляем их в список
         while (map.containsKey(currentCity)) {
             route.add(map.get(currentCity));
             currentCity = map.get(currentCity);
             if (currentCity.equals(departureCity)) break;
         }
 
-        // Очищаем карту, если города назначения в ней не оказалось города назначения
+        // Очищаем карту, если города назначения в ней не оказалось
         if (!route.contains(destinationCity)) route.clear();
 
         return route;
